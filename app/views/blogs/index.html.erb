@@ -1,0 +1,7 @@
+<section id='blog-list'>
+  <% @blogs.each do |blog| %>
+    <div class="blog-summary">
+      <%= link_to blog.title, "/blogs/#{blog.id}" %>
+    </div>
+  <% end %>
+</section>

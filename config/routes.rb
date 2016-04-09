@@ -2,6 +2,24 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get "/" => "blogs#index"
+  get "/blogs" => "blogs#index"
+  get "/blogs/:id" => "blogs#show"
+  get "/blogs/:id/posts/:post_id" => "posts#show"
+
+  get "/session/new" => "session#new"
+
+  get "/users/new" => "users#new"
+  get "/users/:id" => "users#show"
+  post "/users/new" => "users#show"
+
+  resources :blogs, only: [:index, :show, :new, :edit]
+  resources :session, only: [:new, :delete]
+  resources :users, only: [:new, :edit, :create, :show]
+  resources :blogs do
+    resources :posts, only: [:show, :new, :edit]
+  end
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
