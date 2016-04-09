@@ -3,7 +3,7 @@ class CreateBlogs < ActiveRecord::Migration
     create_table :blogs do |t|
       t.integer :author_id
       t.string  :title
-      t.string  :content
+      t.string  :description
 
       t.timestamps(null: false)
     end
