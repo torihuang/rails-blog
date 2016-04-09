@@ -3,4 +3,6 @@ class Taggable < ActiveRecord::Base
   belongs_to :tag
   belongs_to :blog
   belongs_to :post
+
+  validates :tag_id, presence: true
 end

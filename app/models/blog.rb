@@ -5,4 +5,6 @@ class Blog < ActiveRecord::Base
 
   has_many :hearts, as: :heartable
   has_many :posts
+
+  validates :title, :description, :author_id, presence: true
 end

@@ -7,4 +7,5 @@ class Post < ActiveRecord::Base
   has_many :hearts, as: :heartable
   has_many :comments
 
+  validates :title, :content, :blog_id, presence: true
 end
