@@ -3,7 +3,7 @@
 <h3><%= "written by #{@blog.author.username}" %></h3>
 
 <section class='post-list'>
-<% @posts.each do |post| %>
+<% @blog.posts.each do |post| %>
   <%= render template: "posts/_individual_post", layout: false, locals: {post: post} %>
 <% end %>
 </section>

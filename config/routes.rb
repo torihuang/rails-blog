@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
   get "/" => "blogs#index"
   get "/blogs" => "blogs#index"
+  get "/blogs/new" => "blogs#new"
   get "/blogs/:id" => "blogs#show"
   get "/blogs/:id/posts/:post_id" => "posts#show"
+  post "/blogs/new" => "blogs#show"
 
   get "/session/new" => "session#new"
 

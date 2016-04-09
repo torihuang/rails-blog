@@ -5,11 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts "========================================="
-    puts user_params[:user]
     @user = User.new(user_params)
-    # @user.password = password_param[:user]
-    puts user_params
     if @user.save
       session[:user_id] = @user.id
       redirect_to @user
