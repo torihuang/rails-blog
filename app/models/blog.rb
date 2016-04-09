@@ -1,5 +1,5 @@
 class Blog < ActiveRecord::Base
-  belongs_to :author
+  belongs_to :author, class_name: 'User'
   has_many :taggables, as: :tagged
   has_many :tags, through: :taggables, source: :tag
 

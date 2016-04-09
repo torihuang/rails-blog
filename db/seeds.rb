@@ -7,7 +7,6 @@ Blog.create(author_id: 1, title: "Dogs", description: "The are cute fo sho")
 Blog.create(author_id: 2, title: "Art History", description: "Pretty colors and other art stuff")
 Blog.create(author_id: 2, title: "Ramen", description: "OMG")
 
-
 Blog.all.to_a.each do |blog|
   10.times do
     blog.posts << Post.create(title: Faker::Lorem.sentence(3, true, 4), content: Faker::Lorem.paragraph(2))
@@ -21,9 +20,9 @@ Post.all.to_a.each do |post|
 end
 
 50.times do
-  Heart.create(post: (1..40).to_a.sample, heartable_type: 'post')
-  Heart.create(blog: (1..4).to_a.sample, heartable_type: 'blog')
-  Heart.create(comment: (1..400).to_a.sample, heartable_type: 'comment')
+  Heart.create(heartable: Post.all.to_a.sample)
+  Heart.create(heartable: Blog.all.to_a.sample)
+  Heart.create(heartable: Comment.all.to_a.sample)
 end
 
 20.times do
@@ -31,9 +30,9 @@ end
 end
 
 150.times do
-  Taggable.create(tagged_type: 'post', tag: Tag.all.to_a.sample, post: Post.all.to_a.sample)
+  Taggable.create(tagged: Post.all.to_a.sample, tag: Tag.all.to_a.sample)
 end
 
 30.times do
-  Taggable.create(tagged_type: 'blog', tag: Tag.all.to_a.sample, blog: Blog.all.to_a.sample)
+  Taggable.create(tagged: Blog.all.to_a.sample, tag: Tag.all.to_a.sample)
 end
