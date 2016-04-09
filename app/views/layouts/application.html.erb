@@ -3,10 +3,26 @@
 <head>
   <title>RailsBlog</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <h1 id='logo'>
+      <%= image_tag('logo.png', alt: '') %>
+      <span id='logo-title'><%= link_to "Barking Blog", "/" %></span>
+    </h1>
+    <nav>
+      <% if logged_in? %>
+        <%= link_to current_user.username, "/users/#{current_user.id}" %>
+        <%= link_to "logout", "/session/delete" %>
+      <% else %>
+        <%= link_to "login", "/session/new" %>
+        <%= link_to "sign up", "/users/new" %>
+      <% end %>
+    </nav>
+  </header>
 
 <%= yield %>
 
