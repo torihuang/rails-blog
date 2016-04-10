@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   get "/" => "blogs#index"
   get "/blogs" => "blogs#index"
   get "/blogs/new" => "blogs#new"
+  get "/blogs/:id/edit" => "blogs#edit"
   get "/blogs/:id" => "blogs#show"
+  put "/blogs/:id" => "blogs#update"
+  delete "/blogs/:id" => "blogs#destroy"
   post "/blogs/new" => "blogs#show"
 
 
@@ -22,7 +25,7 @@ Rails.application.routes.draw do
   get "/users/:id" => "users#show"
   post "/users/new" => "users#show"
 
-  resources :blogs, only: [:index, :show, :new, :edit]
+  resources :blogs, only: [:index, :show, :new, :edit, :destroy, :update]
   resources :session, only: [:new, :delete]
   resources :users, only: [:new, :edit, :create, :show]
   resources :blogs do
