@@ -2,6 +2,10 @@
 <h2><%= @blog.description %></h2>
 <h3><%= "written by #{@blog.author.username}" %></h3>
 
+<% if current_user.id == @blog.author.id %>
+  <%= link_to "Create a new post", "/blogs/#{@blog.id}/posts/new" %>
+<% end %>
+
 <section class='post-list'>
 <% @blog.posts.each do |post| %>
   <%= render template: "posts/_individual_post", layout: false, locals: {post: post} %>
