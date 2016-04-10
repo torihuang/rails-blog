@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def show
     @post = @blog.posts.find_by(id: params[:post_id])
+    @comment = Comment.new
   end
 
   def new

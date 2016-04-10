@@ -4,3 +4,23 @@
 <% end %>
 <h4><%= link_to @post.title, "/blogs/#{@blog.id}/posts/#{@post.id}" %></h4>
 <p><%= @post.content %></p>
+
+<section class='comment-list'>
+  <% @post.comments.each do |comment| %>
+    <%= render template: "comments/_individual_comment", layout: false, locals: {comment: comment} %>
+  <% end %>
+</section>
+
+<%= form_for([@blog,@post,@comment]) do |f| %>
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </p>
+
+  <%= f.hidden_field :author_id, value: @blog.id %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
