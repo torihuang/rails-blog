@@ -14,6 +14,77 @@
  *= require_self
  */
 
+ @font-face {
+  font-family: thunder_strike;
+  src: url(font-path('thunder_strike.ttf'));
+ }
+
+ body {
+  text-align: center;
+ }
+
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: purple;
+}
+
+.link {
+  margin-bottom: 30px;
+  /*vertical-align: top;*/
+ }
+
+#logo img {
+  width: 200px;
+  display: inline-block;
+}
+
+#logo-title {
+  display: inline-block;
+  margin-left: 30px;
+  margin-top: 0px;
+  border: 1px solid black;
+  font-size: 75px;
+}
+
+#logo {
+  float: left;
+  display: inline-block;
+}
+
+header {
+  border: 1px solid black;
+  overflow: auto;
+}
+
+/*header h1 {
+  border: 1px solid black;
+  float: left;
+  width: 600px;
+  display: inline-block;
+}*/
+
+header nav {
+  /*margin-left: 600px;*/
+  float: right;
+  display: inline-block;
+  border: 1px solid black;
+  margin-top: 100px;
+font-size: 25px;
+}
+
+.link {
+  margin: auto 20px;
+}
+
+main {
+  clear: both;
+}
+
 #blog-list {
   margin: 20px auto;
   border: 2px solid black;
@@ -26,26 +97,22 @@
   text-decoration: none;
 }
 
-a {
+.button-container {
+  margin: 30px auto;
+  /*border: 1px solid black;*/
+  width: 200px;
+  display: block;
+  overflow: auto;
+}
+.button {
+  display: block;
+  padding: 30px;
+  background-color: grey;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: purple;
   color: black;
-  text-decoration: none;
-}
-
-a:hover {
-  color: purple;
-}
-
-#logo {
-  border: 1px solid black;
-}
-
-#logo-title {
-  border: 1px solid black;
-  margin-bottom: 20px;
-  padding-top: 30px;
-  /*vertical-align: top;*/
-}
-
-#logo img {
-  width: 100px;
 }

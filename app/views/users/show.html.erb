@@ -1,1 +1,30 @@
-<h1>WORK WORK WORK WORK WORK WORK</h1>
+<% if current_user && current_user.id == @user.id %>
+  <h1>Hello <%= current_user.username %>!</h1>
+<% else %>
+  <h1>Welcome to <%= @user.username %>'s Profile Page!</h1>
+<% end %>
+
+<h2 class='user-show-page-h2'>Blogs by Me</h2>
+<section id='user-show-blog-container'>
+  <% current_user.blogs.each do |blog| %>
+    <%= link_to blog.title, "/blogs/#{blog.id}" %>
+  <% end %>
+</section>
+
+<h2 class='user-show-page-h2'>Posts by Me</h2>
+<section id='user-show-post-container'>
+  <% current_user.posts.each do |post| %>
+  <p>
+    <%= link_to post.title, "/blogs/#{post.blog.id}/posts/#{post.id}" %>
+  </p>
+  <% end %>
+</section>
+
+<h2 class='user-show-page-h2'>Comments by Me</h2>
+<section id='user-show-comment-container'>
+  <% current_user.comments.each do |comment| %>
+  <p>
+    <%= link_to "Comment on post title: #{comment.post.title}", "/blogs/#{comment.post.blog.id}/posts/#{comment.post.id}" %>
+  </p>
+  <% end %>
+</section>

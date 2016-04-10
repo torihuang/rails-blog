@@ -18,8 +18,11 @@ Rails.application.routes.draw do
   delete "/blogs/:id" => "blogs#destroy"
   post "/blogs/new" => "blogs#show"
 
+  post "/blogs/:id/posts/:post_id/comments" => "comments#create"
 
   get "/session/new" => "session#new"
+  post "/session/new" => "session#create"
+  delete "/session" => "session#destroy"
 
   get "/users/new" => "users#new"
   get "/users/:id" => "users#show"
@@ -30,6 +33,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :edit, :create, :show]
   resources :blogs do
     resources :posts, only: [:show, :new, :edit, :create, :delete, :update]
+  end
+  resources :blogs do
+    resources :posts do
+      resources :comments, only: [:show, :new, :edit, :create, :delete, :update]
+    end
   end
 
   # You can have the root of your site routed with "root"

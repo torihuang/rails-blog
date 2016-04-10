@@ -10,13 +10,28 @@ class User < ActiveRecord::Base
   # validate :valid_password
 
   def password
-    Password.new(encrypted_password)
+    @password = BCrypt::Password.new(encrypted_password)
   end
 
   def password=(password_input)
     @password_input = password_input
     @password = BCrypt::Password.create(password_input)
     self.encrypted_password = @password
+  end
+
+  def self.authenticate(args)
+    user = User.find_by(username: args[:username])
+    puts "============================"
+    puts user
+    puts args
+    puts args[:password]
+    puts user.password == args[:password]
+    if user && user.password == args[:password]
+      puts "HERE"
+      return user
+    else
+      return nil
+    end
   end
 
   # def valid_password

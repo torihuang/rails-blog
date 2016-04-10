@@ -9,22 +9,23 @@
 </head>
 <body>
   <header>
-    <h1 id='logo'>
+    <section id='logo'>
       <%= image_tag('logo.png', alt: '') %>
-      <span id='logo-title'><%= link_to "Barking Blog", "/" %></span>
-    </h1>
+      <%= link_to "Barking Blog", "/", id: 'logo-title' %>
+    </section>
     <nav>
       <% if logged_in? %>
-        <%= link_to current_user.username, "/users/#{current_user.id}" %>
-        <%= link_to "logout", "/session/delete" %>
+        <%= link_to current_user.username, "/users/#{current_user.id}", class: 'link' %>
+        <%= link_to "logout", "/session", class: 'link', method: :delete %>
       <% else %>
-        <%= link_to "login", "/session/new" %>
-        <%= link_to "sign up", "/users/new" %>
+        <%= link_to "login", "/session/new", class: 'link' %>
+        <%= link_to "sign up", "/users/new", class: 'link' %>
       <% end %>
     </nav>
   </header>
 
-<%= yield %>
-
+  <main>
+    <%= yield %>
+  </main>
 </body>
 </html>

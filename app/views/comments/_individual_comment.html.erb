@@ -1,0 +1,8 @@
+<section class='individual-comment'>
+  <p><%= comment.content %></p>
+  <% if comment.author %>
+    <p>written by <%= comment.author.username %></p>
+  <% else %>
+    <p>written by anonymous</p>
+  <% end %>
+</section>

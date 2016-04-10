@@ -1,9 +1,14 @@
-<%= link_to "Make a New Blog", "/blogs/new" %>
+<section class='button-container'>
+<%= link_to "Make a New Blog", "/blogs/new", class: 'button' %>
+</section>
 
+<h2>Check out our blogs!</h2>
 <section id='blog-list'>
   <% @blogs.each do |blog| %>
     <div class="blog-summary">
       <%= link_to blog.title, "/blogs/#{blog.id}" %>
+       by
+      <%= link_to blog.author.username, "/users/#{blog.author.id}" %>
     </div>
   <% end %>
 </section>
