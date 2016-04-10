@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: :author_id
   has_many :posts, through: :blogs, source: :posts
 
-  # validates :username, :email, presence: true, uniqueness: true
+  validates :username, :email, presence: true, uniqueness: true
   # validate :valid_password
 
   def password
