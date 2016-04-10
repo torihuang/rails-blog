@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
-  include ApplicationHelper
   before_action :get_blog
+  before_action :authorize
+
+  def authorize
+    if !current_user
+      redirect_to session_new_url
+    end
+  end
 
   def get_blog
     @blog = Blog.find_by(id: params[:id])

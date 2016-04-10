@@ -1,4 +1,12 @@
 class CommentsController < ApplicationController
+  before_action :authorize
+
+  def authorize
+    if !current_user
+      redirect_to session_new_url
+    end
+  end
+
   def create
     @comment = Comment.new(comment_params)
     @post = @comment.post
