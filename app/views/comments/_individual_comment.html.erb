@@ -1,8 +1,8 @@
 <section class='individual-comment'>
   <p><%= comment.content %></p>
   <% if comment.author %>
-    <p>written by <%= comment.author.username %></p>
+    <p>written by <%= link_to comment.author.username, "/users/#{comment.author.id}" %> on <%= comment.created_at.month %>/<%= comment.created_at.day %>/<%= comment.created_at.year %></p>
   <% else %>
-    <p>written by anonymous</p>
+    <p>written by anonymous on <%= comment.created_at.month %>/<%= comment.created_at.day %>/<%= comment.created_at.year %></p>
   <% end %>
 </section>

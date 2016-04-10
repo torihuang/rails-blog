@@ -30,16 +30,33 @@ Rails.application.routes.draw do
   get "/users/:id" => "users#show"
   post "/users/new" => "users#show"
 
+  get "/tags/:id" => "tags#show"
+  get "/blogs/:blog_id/tags/:id" => "tags#new"
+  get "/posts/:post_id/tags/:id" => "tags#new"
+  post "/blogs/:blog_id/tags/:id" => "tags#create"
+  post "/posts/:post_id/tags/:id" => "tags#create"
+
   resources :blogs, only: [:index, :show, :new, :edit, :destroy, :update]
+  resources :tags, only: [:show]
   resources :session, only: [:new, :delete]
   resources :users, only: [:new, :edit, :create, :show]
+
   resources :blogs do
     resources :posts, only: [:show, :new, :edit, :create, :delete, :update]
   end
+
   resources :blogs do
     resources :posts do
       resources :comments, only: [:show, :new, :edit, :create, :delete, :update]
     end
+  end
+
+  resources :posts do
+    resources :tags, only: [:create, :new]
+  end
+
+  resources :blogs do
+    resources :tags, only: [:create, :new]
   end
 
   # You can have the root of your site routed with "root"

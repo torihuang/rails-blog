@@ -11,7 +11,9 @@
   <header>
     <section id='logo'>
       <%= image_tag('logo.png', alt: '') %>
-      <%= link_to "Barking Blog", "/", id: 'logo-title' %>
+      <div id='logo-div'>
+        <%= link_to "Barking Blog", "/", id: 'logo-title' %>
+      </div>
     </section>
     <nav>
       <% if logged_in? %>
@@ -27,5 +29,9 @@
   <main>
     <%= yield %>
   </main>
+
+<!--   <footer>
+    <p>Copyright © Tori Huang 2016</p>
+  </footer> -->
 </body>
 </html>

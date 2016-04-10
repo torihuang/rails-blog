@@ -1,23 +1,36 @@
 <% if logged_in? && current_user.id == @blog.author.id %>
-  <%= link_to 'Edit', "/blogs/#{@blog.id}/posts/#{@post.id}/edit" %>
-  <%= link_to 'Delete', "/blogs/#{@blog.id}/posts/#{@post.id}", method: :delete %>
+  <%= link_to 'Edit', "/blogs/#{@blog.id}/posts/#{@post.id}/edit", class: 'change button' %>
+  <%= link_to 'Delete', "/blogs/#{@blog.id}/posts/#{@post.id}", method: :delete, class: 'change button' %>
+  <%= link_to 'Add Tag', "/posts/#{@post.id}/tags/new", class: 'change button' %>
 <% end %>
-<h4><%= link_to @post.title, "/blogs/#{@blog.id}/posts/#{@post.id}" %></h4>
-<p><%= @post.content %></p>
+<h4 class='title'><%= link_to @post.title, "/blogs/#{@blog.id}/posts/#{@post.id}" %></h4>
+<h5 class='subtitle'><%= "written by #{@post.author.username}" %></h3>
+
+<section class='tag-container'>
+<% @post.tags.each do |tag| %>
+  <section class='tag'>
+    <%= link_to "\##{tag.topic}", "/tags/#{tag.id}" %>
+  </section>
+<% end %>
+</section>
+
+<p id='post-content'><%= @post.content %></p>
 
 <section class='comment-list'>
   <% @post.comments.each do |comment| %>
+  <section class='summary'>
     <%= render template: "comments/_individual_comment", layout: false, locals: {comment: comment} %>
+  </section>
   <% end %>
 </section>
 
 <%= form_for([@blog,@post,@comment]) do |f| %>
   <p>
     <%= f.label :content %><br>
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
   </p>
 
-  <%= f.hidden_field :author_id, value: @blog.id %>
+  <%= f.hidden_field :author_id, value: current_user.id %>
   <%= f.hidden_field :post_id, value: @post.id %>
 
   <p>
