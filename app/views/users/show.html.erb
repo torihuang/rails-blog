@@ -5,12 +5,12 @@
 <% end %>
 
 <h2 class='user-show-page-h2'>Blogs by Me</h2>
-<section id='user-show-blog-container'>
+<section id="user-show-blog-container">
   <% if current_user %>
   <% current_user.blogs.each do |blog| %>
-    <p>
+    <section class='summary user-summary'>
       <%= link_to blog.title, "/blogs/#{blog.id}" %>
-    </p>
+    </section>
   <% end %>
   <% end %>
 </section>
@@ -19,9 +19,9 @@
 <section id='user-show-post-container'>
   <% if current_user %>
   <% current_user.posts.each do |post| %>
-    <p>
+    <section class='summary user-summary'>
       <%= link_to post.title, "/blogs/#{post.blog.id}/posts/#{post.id}" %>
-    </p>
+    </section>
   <% end %>
   <% end %>
 </section>
@@ -30,9 +30,9 @@
 <section id='user-show-comment-container'>
   <% if current_user %>
   <% current_user.comments.each do |comment| %>
-    <p>
+    <section class='summary user-summary'>
       <%= link_to "Comment on post title: #{comment.post.title}", "/blogs/#{comment.post.blog.id}/posts/#{comment.post.id}" %>
-    </p>
+    </section>
   <% end %>
   <% end %>
 </section>

@@ -1,6 +1,7 @@
 <% if logged_in? && current_user.id == @blog.author.id %>
   <%= link_to 'Edit', "/blogs/#{@blog.id}/edit", class: 'change button' %>
   <%= link_to 'Delete', "/blogs/#{@blog.id}", method: :delete, class: 'change button' %>
+  <%= link_to 'Add Tag', "/blogs/#{@blog.id}/tags/new", class: 'change button' %>
 <% end %>
 
 <h1><%= @blog.title %></h1>

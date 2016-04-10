@@ -228,3 +228,15 @@ main {
 .tag a {
   color: white;
 }
+
+#user-show-blog-container {
+  width: 50%;
+  overflow: auto;
+  margin: 10px auto;
+  display: block;
+}
+
+.user-summary {
+  padding-top: 50px;
+  font-size: 20px;
+}

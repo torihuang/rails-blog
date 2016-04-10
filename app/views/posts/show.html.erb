@@ -27,10 +27,10 @@
 <%= form_for([@blog,@post,@comment]) do |f| %>
   <p>
     <%= f.label :content %><br>
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
   </p>
 
-  <%= f.hidden_field :author_id, value: @blog.id %>
+  <%= f.hidden_field :author_id, value: current_user.id %>
   <%= f.hidden_field :post_id, value: @post.id %>
 
   <p>
