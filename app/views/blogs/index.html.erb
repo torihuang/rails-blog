@@ -1,4 +1,6 @@
-<%= link_to "Make a New Blog", "/blogs/new" %>
+<section class='button-container'>
+<%= link_to "Make a New Blog", "/blogs/new", class: 'button' %>
+</section>
 
 <section id='blog-list'>
   <% @blogs.each do |blog| %>
