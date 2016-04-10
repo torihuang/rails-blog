@@ -1,10 +1,6 @@
-<h4><%= link_to @post.title, "/blogs/#{@blog.id}/posts/#{@post.id}" %></h4>
 <% if logged_in? && current_user.id == @blog.author.id %>
-  <%= form_for @blog do |f| %>
-    Title: <%= f.text_field :title %>
-    Last name : <%= f.text_field :description %>
-    Biography : <%= text_area :person, :biography %>
-    <%= f.submit %>
-  <% end %>
+  <%= link_to 'Edit', "/blogs/#{@blog.id}/posts/#{@post.id}/edit" %>
+  <%= link_to 'Delete', "/blogs/#{@blog.id}/posts/#{@post.id}", method: :delete %>
 <% end %>
+<h4><%= link_to @post.title, "/blogs/#{@blog.id}/posts/#{@post.id}" %></h4>
 <p><%= @post.content %></p>

@@ -25,6 +25,31 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find_by(id: params[:post_id])
+  end
+
+  def update
+    @blog = Blog.find_by(id: params[:id])
+    @post = Post.find_by(id: params[:post_id])
+
+    if @post.update(post_params)
+      redirect_to [@blog, @post]
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @blog = Blog.find_by(id: params[:id])
+    @post = Post.find_by(id: params[:post_id])
+    if @post.destroy
+      redirect_to @blog
+    else
+      render 'show'
+    end
+  end
+
   private
 
   def post_params
