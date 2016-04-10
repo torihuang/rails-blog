@@ -17,10 +17,12 @@ class BlogsController < ApplicationController
   end
 
   def new
+    self.authorize
     @blog = Blog.new
   end
 
   def create
+    self.authorize
     @blog = Blog.new(blog_params)
     @blog.author = current_user
     print blog_params

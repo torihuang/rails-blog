@@ -1,0 +1,15 @@
+<%= form_for([@item,@tag]) do |f| %>
+  <p>
+    <%= f.label :topic %><br>
+    <%= f.text_field :topic %>
+  </p>
+
+  <% if @item.class == Blog %>
+    <%= f.hidden_field :blog_id, value: @item.id %>
+  <% else %>
+    <%= f.hidden_field :post_id, value: @item.id %>
+  <% end %>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,19 @@
+<h1 class='.title'>#<%= @tag.topic %></h1>
+
+<h2 class='tag-show-page-h2 subtitle'>Blogs</h2>
+<section id='tag-show-blog-container'>
+  <% @tag.blogs.each do |blog| %>
+    <section class='summary tag-summary'>
+      <%= link_to blog.title, "/blogs/#{blog.id}" %>
+    </section>
+  <% end %>
+</section>
+
+<h2 class='tag-show-page-h2 subtitle'>Posts</h2>
+<section id='tag-show-post-container'>
+  <% @tag.posts.each do |post| %>
+    <div class='summary tag-summary'>
+      <%= link_to post.title, "/blogs/#{post.blog.id}/posts/#{post.id}" %>
+    </div>
+  <% end %>
+</section>

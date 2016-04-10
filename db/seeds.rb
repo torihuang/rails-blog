@@ -9,13 +9,14 @@ Blog.create(author_id: 2, title: "Ramen", description: "OMG")
 
 Blog.all.to_a.each do |blog|
   10.times do
-    blog.posts << Post.create(title: Faker::Lorem.sentence(3, true, 4), content: Faker::Lorem.paragraph(2))
+    post_content = "#{Faker::Lorem.paragraph(80)}\n#{Faker::Lorem.paragraph(70)}\n#{Faker::Lorem.paragraph(100)}\n#{Faker::Lorem.paragraph(30)}"
+    blog.posts << Post.create(title: Faker::Lorem.sentence(3, true, 4), content: post_content)
   end
 end
 
 Post.all.to_a.each do |post|
   10.times do
-    post.comments << Comment.create(author_id: [1,2,3,4].sample, content: Faker::Lorem.paragraph)
+    post.comments << Comment.create(author_id: [1,2,3,4].sample, content: Faker::Lorem.paragraph(20))
   end
 end
 

@@ -1,18 +1,28 @@
 <% if logged_in? && current_user.id == @blog.author.id %>
-  <%= link_to 'Edit', "/blogs/#{@blog.id}/edit" %>
-  <%= link_to 'Delete', "/blogs/#{@blog.id}", method: :delete %>
+  <%= link_to 'Edit', "/blogs/#{@blog.id}/edit", class: 'change button' %>
+  <%= link_to 'Delete', "/blogs/#{@blog.id}", method: :delete, class: 'change button' %>
 <% end %>
 
 <h1><%= @blog.title %></h1>
 <h2><%= @blog.description %></h2>
 <h3><%= "written by #{@blog.author.username}" %></h3>
 
+<section class='tag-container'>
+<% @blog.tags.each do |tag| %>
+  <section class='tag'>
+    <%= link_to "\##{tag.topic}", "/tags/#{tag.id}" %>
+  </section>
+<% end %>
+</section>
+
 <% if current_user.id == @blog.author.id %>
-  <%= link_to "Create a new post", "/blogs/#{@blog.id}/posts/new" %>
+  <%= link_to "+ create a new post", "/blogs/#{@blog.id}/posts/new", class: 'change button post' %>
 <% end %>
 
 <section class='post-list'>
 <% @blog.posts.each do |post| %>
+<section class='summary'>
   <%= render template: "posts/_individual_post", layout: false, locals: {post: post} %>
+</section>
 <% end %>
 </section>
