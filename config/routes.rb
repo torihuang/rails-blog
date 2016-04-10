@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post "/blogs/:id/posts/:post_id/comments" => "comments#create"
 
   get "/session/new" => "session#new"
+  post "/session/new" => "session#create"
+  delete "/session" => "session#destroy"
 
   get "/users/new" => "users#new"
   get "/users/:id" => "users#show"
