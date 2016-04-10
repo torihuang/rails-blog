@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
 
+  def authorize
+    if !current_user
+      redirect_to session_new_url
+    end
+  end
+
   def show
+    self.authorize
     @user = User.find_by(id: params[:id])
   end
 

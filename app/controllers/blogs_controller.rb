@@ -1,10 +1,17 @@
 class BlogsController < ApplicationController
-  include ApplicationHelper
+
+  def authorize
+    if !current_user
+      redirect_to session_new_url
+    end
+  end
+
   def index
     @blogs = Blog.all.to_a
   end
 
   def show
+    self.authorize
     @blog = Blog.find_by(id: params[:id])
     @posts = @blog.posts
   end
@@ -25,10 +32,12 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    self.authorize
     @blog = Blog.find_by(id: params[:id])
   end
 
   def update
+    self.authorize
     @blog = Blog.find_by(id: params[:id])
 
     if @blog.update(blog_params)
@@ -39,6 +48,7 @@ class BlogsController < ApplicationController
   end
 
   def destroy
+    self.authorize
     @blog = Blog.find_by(id: params[:id])
 
     if @blog.destroy
