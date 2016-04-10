@@ -3,13 +3,19 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get "/blogs/:id/posts/new" => "posts#new"
+  get "/blogs/:id/posts/:post_id/edit" => "posts#edit"
   get "/blogs/:id/posts/:post_id" => "posts#show"
+  patch "/blogs/:id/posts/:post_id" => "posts#update"
+  delete "/blogs/:id/posts/:post_id" => "posts#destroy"
   post "/blogs/:id/posts/new" => "blogs#show"
 
   get "/" => "blogs#index"
   get "/blogs" => "blogs#index"
   get "/blogs/new" => "blogs#new"
+  get "/blogs/:id/edit" => "blogs#edit"
   get "/blogs/:id" => "blogs#show"
+  put "/blogs/:id" => "blogs#update"
+  delete "/blogs/:id" => "blogs#destroy"
   post "/blogs/new" => "blogs#show"
 
 
@@ -19,11 +25,11 @@ Rails.application.routes.draw do
   get "/users/:id" => "users#show"
   post "/users/new" => "users#show"
 
-  resources :blogs, only: [:index, :show, :new, :edit]
+  resources :blogs, only: [:index, :show, :new, :edit, :destroy, :update]
   resources :session, only: [:new, :delete]
   resources :users, only: [:new, :edit, :create, :show]
   resources :blogs do
-    resources :posts, only: [:show, :new, :edit, :create]
+    resources :posts, only: [:show, :new, :edit, :create, :delete, :update]
   end
 
   # You can have the root of your site routed with "root"
