@@ -9,7 +9,9 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @post = @comment.post
+    @comment.author = current_user
+    @comment.post_id = params[:post_id]
+    @post = Post.find_by(id: params[:post_id])
     @blog = @post.blog
     if @comment.save
       redirect_to [@blog, @post]

@@ -25,7 +25,7 @@ class BlogsController < ApplicationController
     self.authorize
     @blog = Blog.new(blog_params)
     @blog.author = current_user
-    print blog_params
+
     if @blog.save
       redirect_to @blog
     else
@@ -63,7 +63,7 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :description)
+    params.require(:blog).permit(:title, :description, :multiple_tags)
   end
 
 end

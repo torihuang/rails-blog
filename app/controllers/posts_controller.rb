@@ -22,9 +22,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    # puts @blog
-    # @blog = Blog.find_by(id: params[:id])
     @post = Post.new(post_params)
+    @post.blog_id = params[:blog_id]
     if @post.save
       redirect_to @post.blog
     else
@@ -39,6 +38,7 @@ class PostsController < ApplicationController
   def update
     @blog = Blog.find_by(id: params[:id])
     @post = Post.find_by(id: params[:post_id])
+    post_params[:blog_id] = @blog.id
 
     if @post.update(post_params)
       redirect_to [@blog, @post]
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :blog_id)
+    params.require(:post).permit(:title, :content, :multiple_tags)
   end
 
 end
