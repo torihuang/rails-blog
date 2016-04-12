@@ -18,11 +18,8 @@ class Post < ActiveRecord::Base
   end
 
   def multiple_tags=(tag_array)
-    puts "====================="
-    puts "IN MULTIPLE TAGS"
     split = tag_array.split(',')
     split.each do |tag_topic|
-      puts "tag_topic"
       self.tags << Tag.create(topic: tag_topic.lstrip) unless tag_topic == ''
     end
   end
