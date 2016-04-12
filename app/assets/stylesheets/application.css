@@ -14,9 +14,15 @@
  *= require_self
  */
 
+ @font-face {
+  font-family: thunder_strike;
+  src: url('thunder_strike.ttf');
+ }
+
  body {
   text-align: center;
-  font-family: sans-serif;
+  font-family: thunder_strike;
+  /*font-family: sans-serif;*/
   font-size: 16px;
  }
 
